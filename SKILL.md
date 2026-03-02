@@ -64,20 +64,53 @@ This skill will AUTOMATICALLY:
 
 ---
 
-## 📚 Prerequisites
-
-This skill requires these sub-skills to be installed:
-- `planning-with-files` - File-based task tracking
-- `brainstorming` - Requirement clarification
-- `writing-plans` - Task refinement
-- `using-git-worktrees` - Branch management
-- `subagent-driven-development` - Task execution
-- `test-driven-development` - TDD workflow
-- `systematic-debugging` - Issue resolution
-- `verification-before-completion` - Quality verification
-- `requesting-code-review` - Code review
-- `receiving-code-review` - Review handling
-- `finishing-a-development-branch` - Completion
+WH|- `finishing-a-development-branch` - Completion
+JQ|
+QV|---
+QV|
+QV|## 🎯 Hybrid Mode: Zero-Dependency with Fallback
+QV|
+QV|This skill works in **two modes**:
+QV|
+QV|### Mode 1: Advanced (with sub-skills)
+QV|If sub-skills are installed, this skill delegates to them for optimal experience:
+QV|
+QV|```bash
+QV|# Try external skill first
+QV|skill("brainstorming")
+QV|skill("test-driven-development")
+QV|skill("verification-before-completion")
+QV|...
+QV|```
+QV|
+QV|### Mode 2: Standalone (zero-dependency)
+QV|If sub-skills are NOT installed, this skill uses **built-in fallback** content:
+QV|
+QV|- All core workflows are documented inline
+QV|- Templates are embedded in this skill
+QV|- You follow the same process, but with guidance in this file
+QV|
+QV|### How It Works
+QV|
+QV|1. **First**: Try to invoke sub-skill `skill("xxx")`
+QV|2. **If not found**: Use the inline fallback guide for that step
+QV|3. **Result**: Works identically either way - just different experience levels
+QV|
+QV|### Recommended: Install Sub-Skills
+QV|For best experience, also install these sub-skills:
+QV|
+QV|- `planning-with-files` - Enhanced tracking hooks
+QV|- `test-driven-development` - Full TDD workflow
+QV|- `systematic-debugging` - Structured debugging
+QV|- `verification-before-completion` - Comprehensive verification
+QV|- `requesting-code-review` - Code review workflow
+QV|- `finishing-a-development-branch` - PR/merge options
+QV|
+QV|But the skill **works completely without them** - that's the design.
+QV|
+QV|---
+QV|
+QV|## 📖 Workflow: Zero-Dependency Fallback Guides
 
 ---
 
@@ -163,9 +196,16 @@ EOF
 Say to user: "Let's define the requirements. What should [feature] do?"
 
 Then guide with spec-kit:
-1. /speckit.constitution - Ask user for project principles
-2. /speckit.specify - Ask user to describe the feature in detail
-3. brainstorming - If needed, invoke for clarification
+BY|3. Try: skill("brainstorming") - If not found, use guide below
+BY|
+BY|#### Fallback: Requirements Guide
+BY|If brainstorming skill not available, follow this process:
+BY|
+BY|1. **Explore context** - Check project files, docs, recent commits
+BY|2. **Ask questions** - One at a time, understand purpose/success criteria
+BY|3. **Propose approaches** - 2-3 options with trade-offs
+BY|4. **Present design** - Get user approval
+BY|5. **Document** - Save to task_plan.md
 
 After requirements are clear:
 → Update task_plan.md Phase 1 to complete
@@ -173,11 +213,17 @@ After requirements are clear:
 
 ### Step 4: Technical Planning
 
-1. /speckit.plan - Ask user for tech stack preferences
-2. /speckit.tasks - Generate task list
-
-If tasks need refinement:
-→ skill("writing-plans")
+HV|If tasks need refinement:
+HX|Try: skill("writing-plans") - If not found, use guide below
+HX|
+HX|#### Fallback: Task Refinement Guide
+HV|If writing-plans skill not available:
+HV|
+HV|1. **Break down** each feature into smallest testable units
+HV|2. **Identify dependencies** between tasks
+HV|3. **Estimate effort** - mark complex tasks
+HV|4. **Order tasks** - what can be done in parallel?
+HV|5. **Update task_plan.md** with refined task list
 
 After planning complete:
 → Update task_plan.md Phase 2 to complete
@@ -185,21 +231,33 @@ After planning complete:
 
 ### Step 5: Implementation
 
-1. skill("using-git-worktrees") - Create feature branch
-
-2. For each task:
-   a. skill("test-driven-development")
-      - Write failing test
-      - Write minimal code
-      - Refactor
-      - Commit
+HM|      - Write failing test
+NS|      - Write minimal code
+RN|      - Refactor
+PR|      - Commit
+TK|
+TB|#### Fallback: TDD Process (if skill unavailable)
+TB|
+TB|1. **RED**: Write failing test first
+TB|2. **GREEN**: Write minimal code to pass
+TB|3. **REFACTOR**: Clean up code
+TB|
+TB|**Iron Law**: NO CODE WITHOUT FAILING TEST FIRST
    
    b. After each code change:
       - Update progress.md with what was done
       - Update task status in task_plan.md
 
-3. If issues arise:
-   - skill("systematic-debugging")
+RY|   - skill("systematic-debugging")
+JY|
+JY|#### Fallback: Debugging (if skill unavailable)
+JY|1. Read errors carefully
+JY|2. Reproduce consistently
+JY|3. Form hypothesis
+JY|4. Test before fixing
+JY|5. Fix root cause
+JY|
+JY|**Rule**: NO FIXES WITHOUT ROOT CAUSE FIRST
 
 After all tasks complete:
 → Update task_plan.md Phase 3 to complete
@@ -207,18 +265,26 @@ After all tasks complete:
 
 ### Step 6: Testing & Review
 
-1. skill("verification-before-completion")
-   - Run all tests
-   - Verify build passes
-   - Check all requirements met
+JQ|   - Check all requirements met
+RX|
+RX|#### Fallback: Verification Guide (if skill unavailable)
+RX|1. Run test suite - all tests pass?
+RX|2. Build project - compiles without errors?
+RX|3. Check spec - all requirements met?
+RX|4. Manual test - key flows work?
 
 2. skill("requesting-code-review")
    - Review code against plan
    - Report issues by severity
 
-3. If issues found:
-   - skill("receiving-code-review")
-   - Fix and re-review
+BR|   - Fix and re-review
+WR|
+WR|#### Fallback: Review Handling (if skill unavailable)
+WR|1. Read review comments carefully
+WR|2. Don't take personally - it's about code
+WR|3. Ask clarifying questions if unclear
+WR|4. Make changes, re-request review
+WR|5. Thank reviewer for feedback
 
 After review complete:
 → Update task_plan.md Phase 4 to complete
@@ -231,8 +297,14 @@ After review complete:
    - Build successful?
    - All tasks marked complete?
 
-2. skill("finishing-a-development-branch")
-   - Present options: merge / PR / keep / discard
+VH|   - Present options: merge / PR / keep / discard
+YH|
+YH|#### Fallback: Completion Options (if skill unavailable)
+YH|1. **Merge** - Pull into main branch
+YH|2. **PR** - Create pull request for review
+YH|3. **Keep** - Leave branch for later
+YH|4. **Discard** - Delete branch if not needed
+YH|Choose based on team workflow and project state
 
 3. Update final status in progress.md
 

@@ -284,8 +284,64 @@ This skill orchestrates these sub-skills:
 | verification-before-completion | Quality verification |
 | requesting-code-review | Code review |
 | receiving-code-review | Review handling |
-| finishing-a-development-branch | Completion |
-
+XS|
+XS|## Skill Integration Map
+XS|
+XS|This skill orchestrates 11 sub-skills into a seamless workflow. Here's how they work together:
+XS|
+XS|### Phase 1: Requirements & Design
+XS|
+XS|Use these skills to define and clarify requirements:
+XS|
+XS|- **brainstorming** - Deep requirement analysis and clarification
+XS|- **planning-with-files** - Document requirements in task_plan.md
+XS|
+XS|### Phase 2: Technical Planning
+XS|
+XS|Use these skills to plan implementation:
+XS|
+XS|- **writing-plans** - Refine tasks and break into actionable items
+XS|- **planning-with-files** - Record technical decisions in findings.md
+XS|
+XS|### Phase 3: Implementation
+XS|
+XS|Use these skills for execution:
+XS|
+XS|- **using-git-worktrees** - Create isolated feature branches
+XS|- **subagent-driven-development** - Delegate and execute tasks
+XS|- **test-driven-development** - TDD workflow for each task
+XS|- **systematic-debugging** - Fix issues when they arise
+XS|- **planning-with-files** - Update progress.md after each action
+XS|
+XS|### Phase 4: Testing & Review
+XS|
+XS|Use these skills for quality assurance:
+XS|
+XS|- **verification-before-completion** - Run tests, verify build
+XS|- **requesting-code-review** - Formal code review
+XS|- **receiving-code-review** - Handle feedback and fix issues
+XS|
+XS|### Phase 5: Completion
+XS|
+XS|Use these skills to finish:
+XS|
+XS|- **finishing-a-development-branch** - Merge, PR, or cleanup options
+XS|- **planning-with-files** - Final status update
+XS|
+XS|### Skill Coordination
+XS|
+XS|This skill acts as an **orchestrator** that:
+XS|
+XS|1. **Delegates** specific tasks to specialized skills
+XS|2. **Coordinates** hand-offs between skills (e.g., TDD -> debugging -> verification)
+XS|3. **Persists** context via planning-with-files across all phases
+XS|4. **Reminds** user to update tracking files via hooks
+XS|
+XS|**Why this works:** Each sub-skill is an expert in its domain. By orchestrating them together, you get best-in-class functionality for each phase without reinventing the wheel.
+XS|
+XS|---
+XS|
+XJ|## Workflow Phases
 ---
 
 ## Workflow Phases

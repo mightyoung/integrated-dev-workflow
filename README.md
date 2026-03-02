@@ -20,6 +20,7 @@
 - [Agent Compatibility](#agent-compatibility)
 - [File Structure](#file-structure)
 - [Required Sub-Skills](#required-sub-skills)
+- [Zero-Dependency Hybrid Mode](#zero-dependency-hybrid-mode)
 - [Workflow Phases](#workflow-phases)
 - [Examples](#examples)
 - [Troubleshooting](#troubleshooting)
@@ -284,87 +285,37 @@ This skill orchestrates these sub-skills:
 | verification-before-completion | Quality verification |
 | requesting-code-review | Code review |
 | receiving-code-review | Review handling |
-XS|
-XS|## Skill Integration Map
-XS|
-XS|This skill orchestrates 11 sub-skills into a seamless workflow. Here's how they work together:
-XS|
-XS|### Phase 1: Requirements & Design
-XS|
-XS|Use these skills to define and clarify requirements:
-XS|
-XS|- **brainstorming** - Deep requirement analysis and clarification
-XS|- **planning-with-files** - Document requirements in task_plan.md
-XS|
-XS|### Phase 2: Technical Planning
-XS|
-XS|Use these skills to plan implementation:
-XS|
-XS|- **writing-plans** - Refine tasks and break into actionable items
-XS|- **planning-with-files** - Record technical decisions in findings.md
-XS|
-XS|### Phase 3: Implementation
-XS|
-XS|Use these skills for execution:
-XS|
-XS|- **using-git-worktrees** - Create isolated feature branches
-XS|- **subagent-driven-development** - Delegate and execute tasks
-XS|- **test-driven-development** - TDD workflow for each task
-XS|- **systematic-debugging** - Fix issues when they arise
-XS|- **planning-with-files** - Update progress.md after each action
-XS|
-XS|### Phase 4: Testing & Review
-XS|
-XS|Use these skills for quality assurance:
-XS|
-XS|- **verification-before-completion** - Run tests, verify build
-XS|- **requesting-code-review** - Formal code review
-XS|- **receiving-code-review** - Handle feedback and fix issues
-XS|
-XS|### Phase 5: Completion
-XS|
-XS|Use these skills to finish:
-XS|
-XS|- **finishing-a-development-branch** - Merge, PR, or cleanup options
-XS|- **planning-with-files** - Final status update
-XS|
-XS|### Skill Coordination
-XS|
-XS|This skill acts as an **orchestrator** that:
-XS|
-XS|1. **Delegates** specific tasks to specialized skills
-XS|2. **Coordinates** hand-offs between skills (e.g., TDD -> debugging -> verification)
-XS|3. **Persists** context via planning-with-files across all phases
-TW|**Why this works:** Each sub-skill is an expert in its domain. By orchestrating them together, you get best-in-class functionality for each phase without reinventing the wheel.
-KK|
-KK|## Zero-Dependency Hybrid Mode
-KK|
-KK|This skill works in **two modes**:
-KK|
-KK|### Mode 1: Advanced (with sub-skills)
-KK|If sub-skills are installed, this skill delegates to them for optimal experience:
-KK|
-KK|- Try `skill("brainstorming")` first
-KK|- If skill not found, use inline fallback guide
-KK|
-KK|### Mode 2: Standalone (zero-dependency)
-KK|If sub-skills are NOT installed, this skill uses **built-in fallback** content:
-KK|
-KK|- All core workflows are documented inline
-KK|- Templates are embedded in this skill
-KK|- You follow the same process, but with guidance in this file
-KK|
-KK|### How It Works
-KK|
-KK|1. **First**: Try to invoke sub-skill `skill("xxx")`
-KK|2. **If not found**: Use the inline fallback guide for that step
-KK|3. **Result**: Works identically either way - just different experience levels
-KK|
-KK|**Recommended**: Install sub-skills for best experience, but skill works completely without them!
-XS|
-XS|---
-XS|
-XJ|## Workflow Phases
+| finishing-a-development-branch | Completion |
+
+---
+
+## Zero-Dependency Hybrid Mode
+
+This skill works in **two modes**:
+
+### Mode 1: Advanced (with sub-skills)
+
+If sub-skills are installed, this skill delegates to them for optimal experience:
+
+- Try `skill("brainstorming")` first
+- If skill not found, use inline fallback guide
+
+### Mode 2: Standalone (zero-dependency)
+
+If sub-skills are NOT installed, this skill uses **built-in fallback** content:
+
+- All core workflows are documented inline
+- Templates are embedded in this skill
+- You follow the same process, but with guidance in this file
+
+### How It Works
+
+1. **First**: Try to invoke sub-skill `skill("xxx")`
+2. **If not found**: Use the inline fallback guide for that step
+3. **Result**: Works identically either way - just different experience levels
+
+**Recommended**: Install sub-skills for best experience, but skill works completely without them!
+
 ---
 
 ## Workflow Phases
